@@ -1,0 +1,16 @@
+
+sudo gem install rails -v 4.2.6
+sudo gem  install rspec-rails
+==================================================================
+brew install ruby —> installs gems
+
+sudo gem  install rspec-rails 
+https://github.com/rspec/rspec-rails
+
+sudo gem install rails -v 4.2.6
+——————————————————————————————————————————————————————————————————
+RUNNING RUBY ON BROWSER STACK== “ruby BrowserStack.rb”
+——————————————————————————————————————————————————————————————————
+RUNNING RSPEC== “rspec collection_spec.rb --format documentation”
+——————————————————————————————————————————————————————————————————
+
