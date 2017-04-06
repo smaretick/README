@@ -1,0 +1,13 @@
+
+1. Download Eclipse
+   http://www.eclipse.org/downloads/index.php?show_instructions=TRUE
+
+2. http://toolsqa.com/selenium-webdriver/configure-eclipse-with-selenium-webdriver/
+
+3.		
+  •   Launch the Eclipse IDE & Create a Workspace
+	•	Create a new Project
+	•	Create a new Package
+	•	Create a new Class
+	•	Add External libraries to the project
+
