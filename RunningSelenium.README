@@ -1,0 +1,43 @@
+How to run selenium webdriver test in IE browser
+Step 1-Download IE driver for Selenium
+Open-http://docs.seleniumhq.org/download/
+Depends on your system requirement download the respective driver for Windows 32 download driver 32-bit driver same applies for 64 as well
+￼
+
+A download window will open, wait till the download complete. Once you get zip file unzip the same you will get IEDriverServer.exe
+Downloads
+Below is where you can find the latest releases of all the Selenium components. You can also find a list of previous releases, source code, and additional information for Maven users (Maven is a popular Java build tool).
+
+Selenium Standalone Server
+The Selenium Server is needed in order to run Remote Selenium WebDriver. Selenium 3.X is no longer capable of running Selenium RC directly, rather it does it through emulation and the WebDriverBackedSelenium interface.
+
+Download version 3.3.1
+
+To run Selenium tests exported from IDE, use the Selenium Html Runner.
+
+To use the Selenium Server in a Grid configuration see the wiki page.
+
+The Internet Explorer Driver Server
+This is required if you want to make use of the latest and greatest features of the WebDriver InternetExplorerDriver. Please make sure that this is available on your $PATH (or %PATH% on Windows) in order for the IE Driver to work as expected.
+
+Download version 3.3 for (recommended) 32 bit Windows IE or 64 bit Windows IE
+CHANGELOG
+
+Selenium Client & WebDriver Language Bindings
+In order to create scripts that interact with the Selenium Server (Selenium RC, Selenium Remote WebDriver) or create local Selenium WebDriver scripts, you need to make use of language-specific client drivers. These languages include both 1.x and 2.x style clients.
+
+While language bindings for other languages exist, these are the core ones that are supported by the main project hosted on google code.
+
+Language	Client Version	Release Date	 	 	 
+Java	3.3.1	2017-03-10	Download  	Change log  	Javadoc
+C#	3.3.0	2017-03-07	Download	Change log	API docs
+Ruby	3.3.0	2017-03-07	Download	Change log	API docs
+Python	3.3.0	2017-03-08	Download	Change log	API docs
+Javascript (Node)	3.3.0	2017-03-06	Download	Change log	API docs
+C# NuGet
+NuGet latest release is 3.3.0, Released on 2017-03-07
+
+WebDriver
+WebDriverBackedSelenium
+Support
+RC (Final version 3.1.0 Released 2017-02-16)
