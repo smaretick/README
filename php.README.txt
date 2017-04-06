@@ -1,0 +1,11 @@
+
+Go to /etc/apache2/httpd.conf and change the permission to sudo chmod 777 httpd.conf.
+  >cd /etc/apache2/
+  >sudo chmod 777 httpd.conf
+
+Then open the above file to uncomment the line #LoadModule php5_module libexec/apache2/libphp5.so.
+  >vi httpd.conf
+
+To start the apache built-in server, use the command: 
+   >sudo apachectl start
+
