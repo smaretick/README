@@ -1,0 +1,79 @@
+	•	
+NextPrevious 
+Launching Your App on Devices
+https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/LaunchingYourApponDevices/LaunchingYourApponDevices.html
+All iOS, tvOS, and watchOS apps must be code signed and provisioned to launch on a device. Mac apps that use certain app services must be code signed to launch too. Provisioning is the process of preparing and configuring an app to launch on devices and use app services. Xcode uses information you provide to create a team provisioning profile for you when you assign your Xcode project to a team or the first time you add capabilities to your app. For example, Xcode automatically creates your development certificate and registers a connected device or your Mac. Xcode uses this information to create a provisioning profile that it installs on the device before it launches the app on a device. For iOS, tvOS, and watchOS apps, Xcode runs an app on a device if that device is in the provisioning profile. Similarly, a Mac app that uses certain app services launches only if the Mac is in the provisioning profile.
+You can launch your app on a device using a free Apple ID account, but the capabilities available to your app depends on the platform and your Apple Developer Program membership, described in Supported Capabilities.
+
+Tip: To avoid issues later when you distribute your app, you should test your app running on actual devices. To create and run tests with Xcode, read Testing with Xcode. To learn about the Xcode debugging tools, read Debugging with Xcode. To do in-depth analysis and profiling using Instruments, read Instruments User Guide.
+
+
+Launching Your Mac App
+To launch your Mac app, click the Run button in the project navigator. If the signing identity is set to None, Xcode launches your app. Otherwise, Xcode registers your Mac and adds it to the team provisioning profile before launching your app. If a prompt appears asking whether codesign can sign the app using a key in your keychain, click Always Allow.
+Launching Your App on a Device (iOS, tvOS, watchOS)
+https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/LaunchingYourApponDevices/LaunchingYourApponDevices.html
+It takes just a few steps to launch your app on a device if you previously created your code signing identity and team provisioning profile, as described in Creating the Team Provisioning Profile. Otherwise, a series of dialogs and warnings may appear as Xcode resolves the code signing issues in the process of launching your app.
+To launch an app on a device
+	1.	Connect the device to your Mac. watchOS Note: Connect an iPhone to your Mac that is paired with an Apple Watch. 
+	2.	In the project navigator, choose your device from the Scheme toolbar menu. (Scott Maretick’s iPhone) watchOS Note: If multiple Apple Watches are paired to an iPhone, the active Apple Watch appears in the Scheme toolbar menu. If you change the active Apple Watch using the iPhone, the Scheme toolbar menu item changes to the active watch. To view all Apple Watches paired to an iPhone, open the Devices window, select the iPhone, and view the watches in the Paired Watches table.   Xcode assumes you intend to use the selected device for development and automatically registers it for you. 
+If your device is disabled in the Scheme toolbar menu because it is ineligible, fix the issue before continuing. Under Ineligible Devices, hover the mouse over the device to read the reason why it’s ineligible. For example, if the OS version is lower than the deployment target, upgrade the OS version on the device or choose the version you want to target from the Deployment Target pop-up menu (located in the Deployment Info section). Then select the device from the Scheme toolbar menu.
+Click the Product->Run button.
+Xcode installs the app on the device before launching the app.
+Verify the Developer App certificate for your account is trusted on your device. Open Settings on Scott Maretick's iPhone and navigate to General -> Device Management, then select your Developer App certificate to trust it.
+
+Need to be an Apple Developer
+https://clearbridgemobile.com/how-to-submit-an-app-to-the-app-store/
+
+tvOS Note: If a message appears stating that the Apple TV is not activated, connect the Apple TV to a television and perform the user setup steps. Connect the Apple TV to your Mac again and in Xcode, select the Apple TV in the Devices window. If the warning icon and “Apple TV is not activated.” message disappears, you can install and launch your app on the device.
+If a prompt appears asking whether codesign can sign the app using a key in your keychain, click Always Allow.
+While developing your app, run and test it on all of the devices and OS versions that you intend to support. Because different instruments are available in a simulator, also test your app in a simulator using Instruments and other tools before distributing your app. For details on how to use device simulators to test your app, read Simulator User Guide.
+Archiving Your App
+Next, create an archive of your app. Xcode stores this archive in the Archives organizer.
+To create an archive
+	1.	In the Xcode project editor, choose a generic device—Generic iOS Device, Generic tvOS Device, or Generic iOS Device + watchOS Device—or your device name from the Scheme toolbar menu. You can’t create an archive of a simulator build. If a device is connected to your Mac, the device name appears in the Scheme toolbar menu. When you disconnect the device, the menu item changes to the generic device name. 
+	2.	Choose Product > Archive. The Archives organizer appears and displays the new archive. 
+Xcode runs preliminary validation tests on the archive and may display a validation warning in the project editor. If you see a warning, fix the issue and create the archive again.
+
+Exporting Your App to the App Store 
+https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html
+Exporting Your App for Testing Outside the Store
+Because testers don’t have Xcode to run your app, you create an iOS App file (a file with an .ipa filename extension) that they can then use to install your app on their device. Use this method to test a universal app that runs on all supported devices or test device variants that the store distributes later to users.
+Note: tvOS binaries are also iOS App files with an .ipa filename extension.
+
+To create an iOS App file for testing
+	1.	Open the Archives organizer (choose Organizer from the Window menu), and select the archive. 
+    2.     Click the Export button, select an export option, and click Next.
+             To distribute your app to users with designated devices, select “Save for Ad Hoc Deployment.” The app will be code signed with the distribution certificate. 
+             To distribute your app for internal testing, select “Save for Development Deployment.” The app will be code signed with your development certificate.
+     3.     In the dialog that appears, choose a team from the pop-up menu and click Choose.
+             If necessary, Xcode creates the needed signing identity and provisioning profile for you.
+There are 3 WAYS to create .ipa WITHOUT Command & Apple Developer Account.
+http://stackoverflow.com/questions/26928721/how-to-create-ipa-in-xcode-6-without-apple-developer-account
+1. Fast  (didn’t work for me)
+(Works on all Xcode, All Mac OS, Bundled package can be used for OTA links like Diawi)
+	1.	Just build (Command+B) your app from XCode by setting proper code signing identities
+	2.	From XCode's file search at left bottom, search for .app (This will be under product directory)
+	3.	Right Click on this .app file and select Show in Finder
+	4.	Now, create directory and name it as Payload, copy .app into Payload directory.
+	5.	Archive/Compress(.zip) this Payload directory, rename file extension from .zip to .ipa
+
+2. Extract .ipa from organizer Best
+(Works on all Xcode, All Mac OS)
+	1.	Create Archive (need to build for Generic IOS Device)
+	2.	Go to Organizer (comes up when you do step 1)
+	3.	Get location of Archive by Right Click and selecting Show in Finder
+	4.	Now right click on this .xcarchive file and select Show Package Contents
+	5.	Go to path Products > Applications > YourAppFile
+	6.	Open iTunes's on Mac and drag-drop this YourAppFile from above path in Apps tab. (NOTE: Delete the previous app with the same identifier if any)
+	7.	Now right click on your app under Apps tab of iTunes and select Show in Finder, this is your .ipa file !!! 
+To launch an app on a device
+https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/LaunchingYourApponDevices/LaunchingYourApponDevices.html
+	1.	Connect the device to your Mac.
+	2.	In the project navigator, choose your device from the Scheme toolbar menu.
+	3.	Click the Run button.
+   4.  Xcode installs the app on the device before launching the app.
+   5.  Verify the Developer App certificate for your account is trusted on your device. Open Settings on Scott Maretick's iPhone and navigate to General -> Device Management, then select your Developer App certificate to trust it.
+	 
+
+
+
