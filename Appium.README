@@ -1,1 +1,76 @@
 
+1. Install Appium
+http://appium.io/
+
+2.
+npm install grunt -g
+http://gruntjs.com/getting-started
+grunt --version
+npm -v
+node -v
+
+3.
+https://saucelabs.com/blog/mobile-test-automation-in-java-with-appium
+
+Appium is an open source test automation tool which allows you to easily write functional tests that automate iOS and Android mobile apps. One big advantage Appium has over other mobile test automation tools is that Appium tests can be written in any language that has a Selenium client library, including Python, Ruby, Node.js, and, perhaps most interesting to mobile developers, Objective-C and Java.
+In this post we'll walk through the steps involved in testing the iOS sample apps using the JUnit Java example tests (we also have created TestNG example tests too).
+To start, fork and clone Appium from https://github.com/appium/appium, and follow the installation instructions to set up Appium in your environment.
+Download and build the sample projects by running the following from the command line:
+grunt getSampleCode  grunt buildApp:TestApp  grunt buildApp:UICatalog
+Once the sample projects have have been built, you can then start Appium by running the following:
+grunt appium
+Change the working directory to the sample-code/examples/java/junit directory, and run the tests by executing:
+mvn test
+Or run a single test by executing: mvn -Dtest=com.saucelabs.appium.SimpleTest test
+A Java Appium test is much the same as a Selenium test...you create a RemoteWebDriver instance by specifying some DesiredCapabilities, e.g.:
+    @Before
+    public void setUp() throws Exception {
+        // set up appium against a local application
+        File appDir = new File(System.getProperty("user.dir"), "../../../apps/TestApp/build/Release-iphonesimulator");
+    File app = new File(appDir, "TestApp.app");
+    DesiredCapabilities capabilities = new DesiredCapabilities();
+    capabilities.setCapability(CapabilityType.BROWSER_NAME, "iOS");
+    capabilities.setCapability(CapabilityType.VERSION, "6.0");
+    capabilities.setCapability(CapabilityType.PLATFORM, "Mac");
+
+    //tell Appium where the location of the app is
+    capabilities.setCapability("app", app.getAbsolutePath());
+
+    //create a RemoteWebDriver, the default port for Appium is 4723
+    driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+}</pre>
+
+Tests can also be written to be run against Sauce Labs. To do this, just update your tests to reference a zip file containing your app, and update your RemoteWebDriver instance to point to ondemand.saucelabs.com, eg:
+@Before
+    public void setUp() throws Exception {
+        String sauceUserName = "YOUR_SAUCE_USERNAME";
+        String sauceAccessKey = "YOUR_SAUCE_ACCESS_KEY";
+    DesiredCapabilities capabilities = new DesiredCapabilities();
+    capabilities.setCapability(CapabilityType.BROWSER_NAME, "iOS 6.0");
+    capabilities.setCapability("device", "iPhone Simulator");
+    capabilities.setCapability(CapabilityType.PLATFORM, "Mac 10.8");
+
+    //zip file containing your app to be tested
+    capabilities.setCapability("app", "http://appium.s3.amazonaws.com/TestApp6.0.app.zip");
+
+    driver = new RemoteWebDriver(new URL(MessageFormat.format("http://{0}:{1}@ondemand.saucelabs.com:80/wd/hub", sauceUserName, sauceAccessKey)),
+            capabilities);
+}</pre>
+
+The tests themselves are written just like regular Selenium tests, eg.
+    @Test
+    public void example() throws Exception {
+    // find an element by tag name
+    WebElement button = driver.findElement(By.tagName("button"));
+    button.click();
+
+    // get the value of the element
+    WebElement texts = driver.findElement(By.tagName("staticText"));
+    assertEquals(texts.getText(), "some expected value");
+}</pre>
+
+The Java sample tests for Appium include the following classes:
+	•	
+	•	SimpleTest - runs a test against a simple TestApp
+	•	SauceTest - runs the same test using Sauce Labs
+	•	UICatalogTest - runs a series of tests against the UICatalog sample application
