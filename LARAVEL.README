@@ -1,0 +1,30 @@
+
+1. INSTALL HOMEBREW
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+2. INSTALL PHP (brew install php)
+3. INSTALL SQL (brew install mysql@5.7)
+	 brew services start mysql@5.7 (START SQL)
+4.INSTALL COMPOSER
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === 'e0012edf3e80b6978849f5eff0d4b4e4c79ff1609dd1e613307e16318854d24ae64f26d17af3ef0bf7cfb710ca74755a') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+5.mv composer.phar /usr/local/bin/composer
+6. Now, you can access the composer from the terminal simply using the composer command
+		Scotts-MacBook-2:Desktop scottmaretick$ which composer
+		/usr/local/bin/composer
+7. Install Valet
+	composer global require laravel/valet
+	PATH=$PATH:~/.composer/vendor/bin
+	valet install
+		Scotts-MacBook-2:Desktop scottmaretick$ valet install
+8.Serving Sites
+Once Valet is installed, you’re ready to start serving sites. Valet provides two commands to help you serve your Laravel sites: park and link.
+The park Command
+	•	Create a new directory on your Mac by running something like mkdir ~/Sites. Next, cd ~/Sites and run valet park. This command will register your current working directory as a path that Valet should search for sites.
+	•	Next, create a new Laravel site within this directory: laravel new blog.
+	•	Open http://blog.test in your browser.
+
+
+
+
