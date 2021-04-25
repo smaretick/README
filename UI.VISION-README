@@ -1,0 +1,14 @@
+CREATING SIMPLE SELENIUM BROWSER SCRIPT WITH UI.VISION
+
+1. NAVIGATE TO https://ui.vision/ 1. Add RPA to browser
+				                               2. Install XModules
+2. Add RPA to browser
+3. Open browser
+4. Click UI Vision RPA icon on top right of browser
+5. Opens new window (Extension (UI.Vision RPA) - UI.Vision RPA 6.1.2
+7. Select blue “Macro” button to create new macro & name it
+8. Select “Record” button on top of extension
+9. Navigate to desired sites on browser
+10. When finished recording select “Stop”
+11. Select “Save”
+12. Select “Play Macro”
